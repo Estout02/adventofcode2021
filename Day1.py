@@ -16,6 +16,26 @@ def findIncreases(depths):
             past_depth = d
     return increases
 
+def findSummedIncreases(depths):
+    size = len(depths) - (len(depths) % 3) - 2
+
+    increases = 1
+    for idx, elem in enumerate(depths):
+        if idx == size:
+            break
+        else:
+            A = int(elem) + int(depths[idx + 1]) + int(depths[idx + 2])
+            B = int(depths[idx + 1]) + int(depths[idx + 2]) + int(depths[idx + 3])
+            if A < B:
+                increases += 1
+    return increases
+
+
+
+
+
+
+
 
 def main():
     test_depths = get_input("input/test_d1_2")
@@ -25,6 +45,13 @@ def main():
     depths = get_input("input/day1")
     increases = findIncreases(depths)
     print(str(increases))
+
+    # tres_depths = get_input("input/test_d1_3")
+    # test_tres_increases = findSummedIncreases(tres_depths)
+    # print(str(test_tres_increases))
+
+    tres_increases = findSummedIncreases(depths)
+    print(str(tres_increases))
 
 
 
